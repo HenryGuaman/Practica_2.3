@@ -5,10 +5,26 @@
  */
 package Controlador;
 
+import Vista.VentanaStock;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Abuelito
  */
-public class EventoStock {
+public class EventoStock implements ActionListener{
+    
+    private VentanaStock vStock;
+
+    public EventoStock(VentanaStock vStock) {
+        this.vStock = vStock;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       
+    }
+    
     
 }

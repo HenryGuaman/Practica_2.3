@@ -5,10 +5,24 @@
  */
 package Controlador;
 
+import Vista.VentanaProducto;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Abuelito
  */
-public class EventoProducto {
+public class EventoProducto implements ActionListener{
+    private VentanaProducto vProducto;
+
+    public EventoProducto(VentanaProducto vProducto) {
+        this.vProducto = vProducto;
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+    }
     
 }
