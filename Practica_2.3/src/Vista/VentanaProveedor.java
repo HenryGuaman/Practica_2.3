@@ -56,7 +56,7 @@ public class VentanaProveedor extends JInternalFrame{
         this.txtList.add(new JTextField(15));
         this.txtList.add(new JTextField(15));
         this.txtList.add(new JTextField(15));
-        this.txtList.add(new JTextField(1));
+        this.txtList.add(new JTextField(15));
         
         JPanel panel = new JPanel();
         this.botonList = new ArrayList<JButton>();

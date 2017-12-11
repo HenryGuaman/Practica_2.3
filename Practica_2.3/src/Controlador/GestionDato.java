@@ -32,6 +32,32 @@ public class GestionDato {
         this.proveedorList = proveedorList;
         this.stockList = stockList;
     }
+    
+    public boolean addProveedor(Proveedor p){
+        return this.proveedorList.add(p);
+    }
+    public boolean addProducto(Producto p){
+        return this.productoList.add(p);
+    }
+
+     public boolean buscarProductologico(String name) {
+       boolean retorno = false;
+        for (Producto pro : this.productoList) {
+            if (pro.getNombre().equals(name)) {
+                return true;
+            }
+        }
+        return retorno;
+    }
+    public boolean buscarProveedorlogico(String name) {
+       boolean retorno = false;
+        for (Proveedor pro : this.proveedorList) {
+            if (pro.getNombreYApellido().equals(name)) {
+                return true;
+            }
+        }
+        return retorno;
+    }
 
     public Proveedor buscarProveedor(String name) {
         Proveedor retorno = null;
@@ -52,7 +78,8 @@ public class GestionDato {
         }
         return retorno;
     }
-     public String leerArchivo(String ruta) {
+
+    public String leerArchivo(String ruta) {
         FileReader fr = null;
         BufferedReader br = null;
 
@@ -77,7 +104,7 @@ public class GestionDato {
 
     public boolean LeerArchivoProducto() {
         try {
-            FileInputStream fr = new FileInputStream("C:\\Users\\Estudiante\\Desktop\\Producto.dat");
+            FileInputStream fr = new FileInputStream("E:/Producto.dat");
             DataInputStream leer = new DataInputStream(fr);
 
             while (true) {
@@ -99,7 +126,7 @@ public class GestionDato {
 
     public boolean LeerArchivoProveedor() {
         try {
-            FileInputStream fr = new FileInputStream("C:\\Users\\Estudiante\\Desktop\\Proveedor.dat");
+            FileInputStream fr = new FileInputStream("E:/Proveedor.dat");
             DataInputStream leer = new DataInputStream(fr);
 
             while (true) {
@@ -121,7 +148,7 @@ public class GestionDato {
 
     public boolean LeerArchivoStock() {
         try {
-            FileInputStream fr = new FileInputStream("C:\\Users\\Estudiante\\Desktop\\Stock.dat");
+            FileInputStream fr = new FileInputStream("E:/Stock.dat");
             DataInputStream leer = new DataInputStream(fr);
 
             while (true) {
@@ -145,7 +172,7 @@ public class GestionDato {
     public boolean guardarArchivoProducto() {
         try {
 
-            FileOutputStream ae = new FileOutputStream("C:\\Users\\Estudiante\\Desktop\\Producto.dat", true);
+            FileOutputStream ae = new FileOutputStream("E:/Producto.dat", true);
             DataOutputStream escritura = new DataOutputStream(ae);
             for (Producto p : this.productoList) {
                 escritura.writeInt(p.getCodigo());
@@ -163,7 +190,7 @@ public class GestionDato {
     public boolean guardarArchivoStock() {
         try {
 
-            FileOutputStream ae = new FileOutputStream("C:\\Users\\Estudiante\\Desktop\\Stock.dat", true);
+            FileOutputStream ae = new FileOutputStream("E:/Stock.dat", true);
             DataOutputStream escritura = new DataOutputStream(ae);
             for (Stock a : this.stockList) {
                 escritura.writeInt(a.getCantidadMax());
@@ -183,7 +210,7 @@ public class GestionDato {
     public boolean guardarArchivoProveedor() {
         try {
 
-            FileOutputStream ae = new FileOutputStream("C:\\Users\\Estudiante\\Desktop\\Proveedor.dat", true);
+            FileOutputStream ae = new FileOutputStream("E:/Proveedor.dat", true);
             DataOutputStream escritura = new DataOutputStream(ae);
             for (Proveedor pro : this.proveedorList) {
                 escritura.writeUTF(pro.getNombreYApellido());
