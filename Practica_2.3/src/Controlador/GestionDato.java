@@ -8,10 +8,12 @@ package Controlador;
 import Modelo.Producto;
 import Modelo.Proveedor;
 import Modelo.Stock;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -49,6 +51,28 @@ public class GestionDato {
             }
         }
         return retorno;
+    }
+     public String leerArchivo(String ruta) {
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        String contenido = "";
+        try {
+
+            fr = new FileReader(ruta);
+            br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                contenido += linea + "\n";
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+                br.close();
+            } catch (Exception ex) {
+            }
+        }
+        return contenido;
     }
 
     public boolean LeerArchivoProducto() {
