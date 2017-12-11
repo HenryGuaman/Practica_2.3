@@ -11,6 +11,7 @@ import Modelo.Stock;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -32,16 +33,21 @@ public class GestionDato {
         this.proveedorList = proveedorList;
         this.stockList = stockList;
     }
-    
-    public boolean addProveedor(Proveedor p){
+
+    public boolean addProveedor(Proveedor p) {
         return this.proveedorList.add(p);
     }
-    public boolean addProducto(Producto p){
+
+    public boolean addProducto(Producto p) {
         return this.productoList.add(p);
     }
 
-     public boolean buscarProductologico(String name) {
-       boolean retorno = false;
+    public boolean addStock(Stock s) {
+        return this.stockList.add(s);
+    }
+
+    public boolean buscarProductologico(String name) {
+        boolean retorno = false;
         for (Producto pro : this.productoList) {
             if (pro.getNombre().equals(name)) {
                 return true;
@@ -49,8 +55,19 @@ public class GestionDato {
         }
         return retorno;
     }
+
+    public boolean buscarStocklogico(String name,String name1) {
+        boolean retorno = false;
+        for (Stock st : this.stockList) {
+            if (st.getProducto().getNombre().equals(name) && st.getProveedor().getNombreYApellido().equals(name1)) {
+                return true;
+            }
+        }
+        return retorno;
+    }
+
     public boolean buscarProveedorlogico(String name) {
-       boolean retorno = false;
+        boolean retorno = false;
         for (Proveedor pro : this.proveedorList) {
             if (pro.getNombreYApellido().equals(name)) {
                 return true;
@@ -59,20 +76,21 @@ public class GestionDato {
         return retorno;
     }
 
-    public Proveedor buscarProveedor(String name) {
+    public Proveedor buscarProveedor(String txt) {
         Proveedor retorno = null;
         for (Proveedor pro : this.proveedorList) {
-            if (pro.getNombreYApellido().equals(name)) {
+            if (pro.getNombreYApellido().equals(txt)) {
+
                 return pro;
             }
         }
         return retorno;
     }
 
-    public Producto buscarProducto(String name) {
+    public Producto buscarProducto(String txt) {
         Producto retorno = null;
         for (Producto pro : this.productoList) {
-            if (pro.getNombre().equals(name)) {
+            if (pro.getNombre().equals(txt)) {
                 return pro;
             }
         }
@@ -104,7 +122,7 @@ public class GestionDato {
 
     public boolean LeerArchivoProducto() {
         try {
-            FileInputStream fr = new FileInputStream("E:/Producto.dat");
+            FileInputStream fr = new FileInputStream("C://Practica3//Producto.dat");
             DataInputStream leer = new DataInputStream(fr);
 
             while (true) {
@@ -126,7 +144,7 @@ public class GestionDato {
 
     public boolean LeerArchivoProveedor() {
         try {
-            FileInputStream fr = new FileInputStream("E:/Proveedor.dat");
+            FileInputStream fr = new FileInputStream("C://Practica3//Proveedor.dat");
             DataInputStream leer = new DataInputStream(fr);
 
             while (true) {
@@ -148,7 +166,7 @@ public class GestionDato {
 
     public boolean LeerArchivoStock() {
         try {
-            FileInputStream fr = new FileInputStream("E:/Stock.dat");
+            FileInputStream fr = new FileInputStream("C://Practica3//Stock.dat");
             DataInputStream leer = new DataInputStream(fr);
 
             while (true) {
@@ -172,7 +190,7 @@ public class GestionDato {
     public boolean guardarArchivoProducto() {
         try {
 
-            FileOutputStream ae = new FileOutputStream("E:/Producto.dat", true);
+            FileOutputStream ae = new FileOutputStream("C://Practica3//Producto.dat", true);
             DataOutputStream escritura = new DataOutputStream(ae);
             for (Producto p : this.productoList) {
                 escritura.writeInt(p.getCodigo());
@@ -190,7 +208,7 @@ public class GestionDato {
     public boolean guardarArchivoStock() {
         try {
 
-            FileOutputStream ae = new FileOutputStream("E:/Stock.dat", true);
+            FileOutputStream ae = new FileOutputStream("C://Practica3//Stock.dat", true);
             DataOutputStream escritura = new DataOutputStream(ae);
             for (Stock a : this.stockList) {
                 escritura.writeInt(a.getCantidadMax());
@@ -209,8 +227,11 @@ public class GestionDato {
 
     public boolean guardarArchivoProveedor() {
         try {
-
-            FileOutputStream ae = new FileOutputStream("E:/Proveedor.dat", true);
+            File fichero = new File("C://Practica3");
+            fichero.mkdir();
+            if (fichero.exists()) {
+                
+            FileOutputStream ae = new FileOutputStream("C://Practica3//Proveedor.dat", true);
             DataOutputStream escritura = new DataOutputStream(ae);
             for (Proveedor pro : this.proveedorList) {
                 escritura.writeUTF(pro.getNombreYApellido());
@@ -220,6 +241,7 @@ public class GestionDato {
 
             }
             escritura.close();
+            }
             return true;
         } catch (IOException e1) {
 

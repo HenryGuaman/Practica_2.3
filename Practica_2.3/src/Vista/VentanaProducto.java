@@ -48,7 +48,7 @@ public class VentanaProducto extends JInternalFrame {
         this.etiquetaList = new ArrayList<JLabel>();
 
         this.etiquetaList.add(new JLabel("Codigo:"));
-        this.etiquetaList.add(new JLabel("Nombre: "));
+        this.etiquetaList.add(new JLabel("Descripcion: "));
         this.etiquetaList.add(new JLabel("Precio: "));
 
         this.txtList = new ArrayList<JTextField>();
@@ -66,7 +66,7 @@ public class VentanaProducto extends JInternalFrame {
 
         this.encabezado = new Object[3];
 
-        this.encabezado[0] = "codigo";
+        this.encabezado[0] = "Codigo";
         this.encabezado[1] = "Descripcion";
         this.encabezado[2] = "Precio";
 

@@ -54,12 +54,12 @@ public class VentanaStock extends JInternalFrame {
         this.etiquetaList = new ArrayList<JLabel>();
 
         this.etiquetaList.add(new JLabel("Cantidad maxima:"));
-        this.etiquetaList.add(new JLabel("Cantidad maxima:"));
-        this.etiquetaList.add(new JLabel("Provedor: "));
+        this.etiquetaList.add(new JLabel("Cantidad minima:"));
         this.etiquetaList.add(new JLabel("Producto: "));
+        this.etiquetaList.add(new JLabel("Proveedor: "));
 
-        this.combobox = new JComboBox(this.CargaCombo());
-        this.combobox1 = new JComboBox(this.CargaCombo2());
+        this.combobox = new JComboBox(this.CargaCombo2());
+        this.combobox1 = new JComboBox(this.CargaCombo());
 
         this.txtList = new ArrayList<JTextField>();
         this.txtList.add(new JTextField(5));
@@ -75,10 +75,10 @@ public class VentanaStock extends JInternalFrame {
 
         this.encabezado = new Object[4];
 
-        this.encabezado[0] = "Proveedor";
-        this.encabezado[1] = "Producto";
-        this.encabezado[2] = "Cantidad Maxima";
-        this.encabezado[3] = "Cantidad Maminima";
+        this.encabezado[0] = "Cantidad Maxima";
+        this.encabezado[1] = "Cantidad Minima";
+        this.encabezado[2] = "Producto";
+        this.encabezado[3] = "Proveedor";
 
         this.modeloTabla = new DefaultTableModel(this.datos, this.encabezado);
         this.tabla = new JTable(this.modeloTabla);
@@ -106,18 +106,19 @@ public class VentanaStock extends JInternalFrame {
         int i = 0;
         for (Stock s : this.gD.getStockList()) {
             retorno[i][0] = s.getCantidadMax();
-            retorno[i][1] =s.getCantidadMin();
-            retorno[i][2] =s.getProveedor().getNombreYApellido();
-            retorno[i][3] =s.getProducto().getNombre();
+            retorno[i][1] = s.getCantidadMin();
+            retorno[i][2] = s.getProducto().getNombre();
+            retorno[i][3] = s.getProveedor().getNombreYApellido();
 
             i++;
         }
         return retorno;
     }
-     public Object[] CargaCombo() {
+
+    public Object[] CargaCombo() {
         String[] retorno = new String[this.gD.getProveedorList().size()];
         int i = 0;
-        for (Proveedor p: this.gD.getProveedorList()) {
+        for (Proveedor p : this.gD.getProveedorList()) {
             retorno[i] = p.getNombreYApellido();
             i++;
         }
@@ -221,5 +222,5 @@ public class VentanaStock extends JInternalFrame {
     public void setgD(GestionDato gD) {
         this.gD = gD;
     }
-    
+
 }
